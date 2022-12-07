@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { multiple, sum } from './utility/fuction';
 import { useEffect, useState } from 'react';
-import { addData } from './utility/fakedata';
+import { addData, removeData, deleteCart } from './utility/fakedata';
 
 function App() {
   const a = 5;
@@ -24,6 +24,8 @@ function App() {
     <div className="App">
         <h2>you sum: {total}</h2>
         <h2>you multiple: {totalMultiple}</h2>
+		<button onClick={deleteCart}>Delete All cart</button>
+		
         {
           users.map((user) => <User id={user.id}></User>)
         }
@@ -32,8 +34,11 @@ function App() {
 }
 
 const add =(id) => {
-    console.log(id);
 	addData(id);
+}
+
+const remove =(id) => {
+	removeData(id);
 }
  
 const User = (props) => {
@@ -41,6 +46,7 @@ const User = (props) => {
     <div>
       <h2>{props.id}</h2>
       <button onClick={()=> add(props.id)}>add</button>
+      <button onClick={()=> remove(props.id)}>remove</button>
     </div>
   );
 }; 
