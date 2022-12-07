@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { multiple, sum } from './utility/fuction';
 import { useEffect, useState } from 'react';
+import { addData } from './utility/fakedata';
 
 function App() {
   const a = 5;
@@ -32,6 +33,7 @@ function App() {
 
 const add =(id) => {
     console.log(id);
+	addData(id);
 }
  
 const User = (props) => {
