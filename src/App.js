@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { multiple, sum } from './utility/fuction';
+import { multiple, sum, toCart } from './utility/fuction';
 import { useEffect, useState } from 'react';
 import { addData, removeData, deleteCart } from './utility/fakedata';
 
@@ -9,6 +9,7 @@ function App() {
   const b = 3;
   const total = sum(a, b);
   const totalMultiple = multiple(a, b);
+  const [totalCart, setTotalCart] = useState(0);
 
   const [users, setUsers] = useState([]);
 
@@ -18,6 +19,10 @@ function App() {
     .then(data => setUsers(data));
   }, []);
 
+  useEffect(()=> {
+	setTotalCart(toCart('cart'));
+  }, [])
+
   console.log(users);
 
   return (
@@ -25,7 +30,7 @@ function App() {
         <h2>you sum: {total}</h2>
         <h2>you multiple: {totalMultiple}</h2>
 		<button onClick={deleteCart}>Delete All cart</button>
-		
+		<p>Total Cart {totalCart}</p>
         {
           users.map((user) => <User id={user.id}></User>)
         }
