@@ -1,5 +1,6 @@
 .shop {
     display: flex;
+    position: relative;
 }
 
 .products {
