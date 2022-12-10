@@ -1,0 +1,20 @@
+.product-item {
+    gap: 10px;
+    padding: 30px;
+    display: flex;
+    background: #f1f1f1;
+    flex-direction: column;
+}
+
+.product-item img {
+    height: auto;
+    max-width: 100%;
+    max-width: 300px;
+    margin: 0 auto 10px;
+}
+
+.product-item button {
+    display: block;
+    cursor: pointer;
+    padding: 10px 10px;
+}

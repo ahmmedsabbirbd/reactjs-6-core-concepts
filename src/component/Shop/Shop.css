@@ -1,0 +1,13 @@
+.shop {
+    display: flex;
+}
+
+.products {
+    gap: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.cart-container {
+    width: 400px;
+}
