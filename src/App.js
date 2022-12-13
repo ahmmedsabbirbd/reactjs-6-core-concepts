@@ -17,8 +17,8 @@ function App() {
           <Route path="/data" element={<Data></Data>}></Route>
           <Route path='/data/:UserId' element={<SingleUser></SingleUser>}></Route>
           
-          <Route path="/v1" element={<V1></V1>}>
-            <Route path=':user' element={<V1Details></V1Details>}></Route>
+          <Route path="/v1" element={<V1 />}>
+            <Route path='/v1/:userId' element={<V1Details></V1Details>}></Route>
           </Route>
           <Route path='*' element={<F04></F04>}></Route>
         </Routes>
