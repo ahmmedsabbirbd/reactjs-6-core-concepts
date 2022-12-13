@@ -7,6 +7,7 @@ import SingleUser from './components/SingleUser/SingleUser';
 import V1 from './components/V1/V1';
 import F04 from './components/F04/F04';
 import V1Details from './components/V1Details/V1Details';
+import V2 from './components/V2/V2';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/v1" element={<V1 />}>
             <Route path='/v1/:userId' element={<V1Details></V1Details>}></Route>
           </Route>
+          <Route path='/v2' element={<V2></V2>}></Route>
           <Route path='*' element={<F04></F04>}></Route>
         </Routes>
     </div>
