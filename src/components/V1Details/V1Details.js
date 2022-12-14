@@ -1,10 +1,14 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { ThemeColor } from '../../App';
 
 const V1Details = () => {
+    const theme = useContext(ThemeColor);
     const [user, setUser] = useState({});
     const { userId } = useParams();
+
+    console.log(theme);
     
     useEffect(()=>{
         axios(`https://jsonplaceholder.typicode.com/users/${userId}`)
