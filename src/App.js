@@ -2,12 +2,20 @@ import './App.css';
 import {  createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from './firebase.int';
 import { useEffect, useState } from 'react';
+import Dashboard from './component/Dashboard';
+import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import RequireAuth from './RequireAuth';
+import Login from './component/Login/Login';
 
 function App() {
     const [user, setUser] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location?.state?.from?.pathname || '/';
 
     // signWithGoogle
   const signWithGoogle = ()=> {
@@ -17,6 +25,8 @@ function App() {
       const user = result.user;
       console.log(user);
       setUser(user);
+
+      navigate(from, {replace: true})
     })
     .catch((error) => { 
         console.log(error)
@@ -31,6 +41,7 @@ function App() {
       const user = result.user;
       console.log(user);
       setUser(user);
+      navigate(from, {replace: true})
     })
     .catch((error) => { 
         console.log(error)
@@ -75,6 +86,8 @@ function App() {
                 const user = result.user;
                 console.log(user);
                 setUser(user);
+                navigate(from, {replace: true})
+
             })
             .catch((error) => {
                 console.log(error);
@@ -99,6 +112,8 @@ function App() {
                 const user = result.user;
                 console.log(user);
                 setUser(user);
+                navigate(from, {replace: true})
+
             })
             .catch((error) => { 
                 console.log(error)
@@ -118,6 +133,7 @@ function App() {
 
   return (
     <div className="App">
+        <Link to='/dashboard'>DashBord</Link>
         {
             user ?
             <button onClick={logout}>Logout</button>
@@ -160,6 +176,15 @@ function App() {
                 </>
             }
         </div>
+        <Routes>
+            <Route path='/login' element={<Login></Login>}></Route>
+            <Route path='/dashboard' 
+                element={
+                    <RequireAuth>
+                        <Dashboard />
+                    </RequireAuth>
+                }></Route>
+        </Routes>
     </div>
   );
 }
