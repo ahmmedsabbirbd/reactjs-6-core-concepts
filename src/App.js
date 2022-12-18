@@ -1,8 +1,7 @@
 import './App.css';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import app from './firebase.int';
+import {  GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import auth from './firebase.int';
 
-const auth = getAuth(app);
 function App() {
 
   const signWithGoogle = ()=> {
@@ -16,9 +15,24 @@ function App() {
         console.log(error)
     });
   }
+
+  const signWithGithub = ()=> {
+    const singWithGithubProvider = new GithubAuthProvider();
+    signInWithPopup(auth, singWithGithubProvider)
+    .then((result) => { 
+      const user = result.user;
+      console.log(user);
+    })
+    .catch((error) => { 
+        console.log(error)
+    });
+  } 
+ 
+
   return (
     <div className="App">
         <button onClick={signWithGoogle}>Sign Google</button>
+        <button onClick={signWithGithub}>Sign github</button>
     </div>
   );
 }
